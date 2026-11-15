@@ -1,0 +1,12 @@
+# The app lives in a nested folder; build and deploy from there.
+[build]
+  base = "topic-to-playground-main/topic-to-playground-main"
+  # Install dependencies (including dev tools like vite) before building.
+  command = "npm install --include=dev && npm run build"
+  # Relative to the base directory. Nitro's Netlify preset writes static assets here
+  # and the SSR server function to .netlify/functions-internal.
+  publish = "dist"
+
+[build.environment]
+  # Build the TanStack Start server for Netlify instead of the Cloudflare fallback.
+  NITRO_PRESET = "netlify"
